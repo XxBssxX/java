@@ -4,3 +4,115 @@ import java.util.Scanner;
 public class myjavaproject{
 
     public static void main(String[] args) {
+ EXERCICE 1
+///EN UTILISANT FOR
+        System.out.println("Entrer le nombre des entiers : "); 
+        Scanner in=new Scanner(System.in);
+        int N=in.nextInt();
+        int[] num=new int[N];
+        int sum=0;
+        int prod=1;
+            for(int i=0;i<N;i++){
+                System.out.println("Entrer le nombre : "+(i+1));
+                num[i]=in.nextInt();
+                sum+=num[i];
+                prod*=num[i];
+            }
+        System.out.println("La somme est : "+sum+" Le produit est : "+prod+"  La moyenne est : "+(sum/N));    
+   ///EN UTILISANT WHILE   
+        int i=0;      
+        while (i<N){
+            System.out.println("Entrer le nombre : "+(i+1));
+            num[i]=in.nextInt();
+            sum+=num[i];
+            prod*=num[i];
+        i++;
+        } 
+   System.out.println("La somme est : "+sum+" Le produit est : "+prod+" La moyenne est : "+(sum/N));    
+    ///EN UTILISANT DO WHILE   
+        int i=0;
+        do{
+            System.out.println("Entrer le nombre : "+(i+1));
+            num[i]=in.nextInt();
+            sum+=num[i];
+            prod*=num[i];
+            i++;
+        }
+        while(i<N);
+        System.out.println("La somme est : "+sum+"  Le produit est : "+prod+"   La moyenne est : "+(sum/N));    
+//EXERCICE 2:  
+            System.out.println("entrer l'entier X et l'entier n successivement tel que X^n : ");
+            Scanner in=new Scanner(System.in);
+            int x=in.nextInt();
+            int n=in.nextInt();
+            int resultat=1;
+            System.out.println("X^n = "+pow(x,n));
+                for(int i=0;i<n;i++){
+                    resultat=resultat*x;
+                }
+            System.out.println("X^n = "+resultat);
+//EXERCICE 3:
+            System.out.println("entrer le nombre N (Nombre de termes) : ");
+            Scanner in=new Scanner(System.in);
+            int N=in.nextInt();
+            int i=2;
+            double sum=1.0f;
+                while(i<=N){
+                    sum+=1./i;
+                    i++;
+                }
+            System.out.println("La somme est : "+sum);    
+//EXERCICE 4:
+            System.out.println("Entrer le nombre de ligne: ");    
+            Scanner in=new Scanner(System.in);
+            int N=in.nextInt();
+                for(int i=0;i<N;i++){
+                    for(int j=0;j<=i;j++){
+                        System.out.print("*");
+                
+                }
+                    System.out.println("\n");
+                }
+//EXERCICE 5:
+                System.out.println("Entrer un entier :");
+          Scanner in = new Scanner(System.in);
+          int n=in.nextInt();
+          int factor=1;
+            for (int i=1;i<=n;i++){
+                factor=i*factor;
+            }
+            System.out.println("La factorielle de "+n +" est : "+factor);
+            int i=1;  
+            while(i<n){
+                factor*=i;
+                i++;
+            }  
+            System.out.println("La factorielle de "+n +" est : "+factor);
+//EXERCICE 6:
+                System.out.println("Entrer un nombre entier : ");
+                Scanner in=new Scanner(System.in);
+                int n=in.nextInt();
+                int a=0;
+                    for(int i=2;i<n;i++){
+                        if(n%i==0)
+                            a=1;
+                    }
+               if(a==0)
+                   System.out.println("Le nombre est premier");
+               else
+                   System.out.println("Le nombre n'est pas premier");
+        for(int i=2;i<=n;i++){
+            for(int j=2;j<i/2;j++){
+                 a=0;
+                        if(i%j == 0){
+                            a=1;
+                            break;}
+                    }
+               if(a==0)
+                   System.out.println("Le nombre "+i+" est premier");
+               else{
+                   System.out.println("Le nombre "+i+" n'est pas premier");
+                  
+               }
+        
+        }      
