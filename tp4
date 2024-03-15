@@ -1,0 +1,236 @@
+EXERCICE 1
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Entrez un entier positif : ");
+        int num = scanner.nextInt();
+
+        System.out.println("Les diviseurs de " + num + " sont :");
+        int divisorCount = 0;
+        int divisorSum = 0;
+        for (int i = 1; i <= num; i++) {
+            if (num % i == 0) {
+                System.out.print(i + " ");
+                divisorCount++;
+                divisorSum += i;
+            }
+        }
+        System.out.println("\nLe nombre de diviseurs est : " + divisorCount);
+        System.out.println("La somme des diviseurs est : " + divisorSum);
+
+        scanner.close();
+    }
+}
+EXERCICE 2
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Entrez l'heure : ");
+        int hour = scanner.nextInt();
+
+        System.out.print("Entrez les minutes : ");
+        int minute = scanner.nextInt();
+
+        
+        minute += 1;
+        if (minute == 60) {
+            hour += 1;
+            minute = 0;
+        }
+        if (hour == 24) {
+            hour = 0;
+        }
+        System.out.println("Il sera " + hour + " heure(s) " + minute + " une minute plus tard.");
+
+        scanner.close();
+    }
+}
+EXERCICE 3
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Entrez un entier positif supérieur à 1 : ");
+        int num = scanner.nextInt();
+        boolean isPerfect = isPerfectNumber(num);
+        if (isPerfect) {
+            System.out.println(num + " est un nombre parfait.");
+        } else {
+            System.out.println(num + " n'est pas un nombre parfait.");
+        }
+
+        scanner.close();
+    }
+    public static boolean isPerfectNumber(int num) {
+        int divisorSum = 0;
+        for (int i = 1; i <= num / 2; i++) {
+            if (num % i == 0) {
+                divisorSum += i;
+            }
+        }
+        return divisorSum == num;
+    }
+}
+EXERCICE 4
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Entrez un entier n : ");
+        int n = scanner.nextInt();
+
+        System.out.print("Entrez un entier m : ");
+        int m = scanner.nextInt();
+        boolean areAmicable = areAmicableNumbers(n, m);
+        if (areAmicable) {
+            System.out.println(n + " et " + m + " sont des nombres amis.");
+        } else {
+            System.out.println(n + " et " + m + " ne sont pas des nombres amis.");
+        }
+
+        scanner.close();
+    }
+    public static boolean areAmicableNumbers(int n, int m) {
+        return (sumOfDivisors(n) == m && sumOfDivisors(m) == n);
+    }
+    public static int sumOfDivisors(int num) {
+        int sum = 0;
+        for (int i = 2; i <= num / 2; i++) {
+            if (num % i == 0) {
+                sum += i;
+            }
+        }
+        return sum;
+    }
+}
+EXERCICE 5
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int[] goals = new int[22];
+        for (int i = 0; i < 22; i++) {
+            System.out.print("Entrez le nombre de buts inscrits par le joueur " + (i+1) + " : ");
+            goals[i] = scanner.nextInt();
+        }
+        int bestBowlerIndex = findBestBowlerIndex(goals);
+        System.out.println("Le numéro du meilleur buteur de l'équipe est : " + (bestBowlerIndex + 1));
+        int totalGoals = calculateTotalGoals(goals);
+        System.out.println("Le nombre total des buts inscrits par cette équipe est : " + totalGoals);
+        int noGoalsCount = countPlayersWithNoGoals(goals);
+        System.out.println("Le nombre des joueurs qui n’ont pas marqué de buts est : " + noGoalsCount);
+
+        scanner.close();
+    }
+    public static int findBestBowlerIndex(int[] goals) {
+        int maxGoals = goals[0];
+        int bestBowlerIndex = 0;
+        for (int i = 1; i < goals.length; i++) {
+            if (goals[i] > maxGoals) {
+                maxGoals = goals[i];
+                bestBowlerIndex = i;
+            }
+        }
+        return bestBowlerIndex;
+    }
+    public static int calculateTotalGoals(int[] goals) {
+        int totalGoals = 0;
+        for (int goal : goals) {
+            totalGoals += goal;
+        }
+        return totalGoals;
+    }
+    public static int countPlayersWithNoGoals(int[] goals) {
+        int noGoalsCount = 0;
+        for (int goal : goals) {
+            if (goal == 0) {
+                noGoalsCount++;
+            }
+        }
+        return noGoalsCount;
+    }
+}
+EXERCICE 6
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Entrez le poids (en kg) : ");
+        double poids = scanner.nextDouble();
+
+        System.out.print("Entrez la taille (en m) : ");
+        double taille = scanner.nextDouble();
+        double imc = poids / (taille * taille);
+        System.out.print("Entrez le sexe (F pour femme, H pour homme) : ");
+        char sexe = scanner.next().charAt(0);
+
+        String etatPoids = "";
+        if (sexe == 'F') {
+            if (imc < 19) {
+                etatPoids = "Maigreur";
+            } else if (imc >= 19 && imc <= 24) {
+                etatPoids = "Poids normal";
+            } else if (imc > 24 && imc <= 30) {
+                etatPoids = "Surcharge pondérale";
+            } else if (imc > 30 && imc <= 40) {
+                etatPoids = "Adiposité";
+            } else {
+                etatPoids = "Obésité";
+            }
+        } else if (sexe == 'H') {
+            if (imc < 20) {
+                etatPoids = "Maigreur";
+            } else if (imc >= 20 && imc <= 25) {
+                etatPoids = "Poids normal";
+            } else if (imc > 25 && imc <= 30) {
+                etatPoids = "Surcharge pondérale";
+            } else if (imc > 30 && imc <= 40) {
+                etatPoids = "Adiposité";
+            } else {
+                etatPoids = "Obésité";
+            }
+        } else {
+            System.out.println("Sexe non reconnu.");
+            return;
+        }
+        System.out.println("Votre IMC est : " + imc);
+        System.out.println("État de poids : " + etatPoids);
+
+        scanner.close();
+    }
+}
+EXERCICE 8
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Entrez l'âge : ");
+        int age = scanner.nextInt();
+        System.out.print("Entrez le sexe (H pour homme, F pour femme) : ");
+        char sexe = scanner.next().charAt(0);
+        boolean imposable = false;
+        if (sexe == 'H' && age > 20) {
+            imposable = true;
+        } else if (sexe == 'F' && age >= 18 && age <= 35) {
+            imposable = true;
+        }
+        if (imposable) {
+            System.out.println("Cette personne est imposable.");
+        } else {
+            System.out.println("Cette personne n'est pas imposable.");
+        }
+
+        scanner.close();
+    }
+}
